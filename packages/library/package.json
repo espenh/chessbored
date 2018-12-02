@@ -1,0 +1,49 @@
+{
+  "author": "Espen Halvorsen <espen.halvorsen@gmail.com>",
+  "contributors": [
+    "Chris Oakman <chris@oakmac.com> (http://chrisoakman.com/)"
+  ],
+  "name": "chessbored",
+  "description": "Chessboard library. Started as fork of chessboard.js by Chris Oakman.",
+  "keywords": [
+    "chess",
+    "chessboard",
+    "board"
+  ],
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/espenh/chessbored.git"
+  },
+  "files": [
+    "/lib"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "uuid": "^3.3.2",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.3.22",
+    "@types/lodash": "^4.14.118",
+    "@types/uuid": "^3.4.4",
+    "@types/jest": "^23.3.10",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.11.0",
+    "typescript": "^3.2.1"
+  },
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "lint": "tslint -p tsconfig.json",
+    "prepublishOnly": "npm test && npm run build",
+    "preversion": "npm run lint",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "license": "MIT"
+}
