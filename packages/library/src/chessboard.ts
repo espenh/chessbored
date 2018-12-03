@@ -354,15 +354,17 @@ export class ChessBoard {
   // fudge factor, and then keep reducing until we find an exact mod 8 for
   // our square size
   private calculateSquareSize() {
-    var containerWidth = this.$container.width() || 0;
+    const containerWidth = this.$container.width() || 0;
+    const containerHeight = this.$container.height() || 0;
+    const sizeToUse = Math.round(Math.min(containerWidth, containerHeight));
 
     // defensive, prevent infinite loop
-    if (!containerWidth || containerWidth <= 0) {
+    if (!sizeToUse || sizeToUse <= 0) {
       return 0
     }
 
     // pad one pixel
-    var boardWidth = containerWidth - 1
+    var boardWidth = sizeToUse - 1
 
     while (boardWidth % 8 !== 0 && boardWidth > 0) {
       boardWidth = boardWidth - 1
