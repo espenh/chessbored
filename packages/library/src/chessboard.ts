@@ -20,8 +20,8 @@ export class ChessBoard {
   private START_POSITION: BoardPosition = fenToObj(StartFen) as BoardPosition;
 
   // default animation speeds
-  private DEFAULT_APPEAR_SPEED = 200
-  private DEFAULT_MOVE_SPEED = 200
+  private DEFAULT_APPEAR_SPEED = 150
+  private DEFAULT_MOVE_SPEED = 150
   private DEFAULT_SNAPBACK_SPEED = 60
   private DEFAULT_SNAP_SPEED = 30
   private DEFAULT_TRASH_SPEED = 100
@@ -1176,9 +1176,16 @@ export class ChessBoard {
         // convert FEN to position object
         positionToSet = fenToObj(position)
       }
-    } else if (!position || !validPositionObject(position)) {
-      // validate position object
-      throw new Error('Invalid value passed to the position method.');
+    } else {
+      if (!position) {
+        throw new Error("Undefined position object passed to position function.");
+      }
+
+      if (!validPositionObject(position)) {
+        throw new Error('Invalid value passed to the position method.');
+      }
+
+      positionToSet = position;
     }
 
     if (!positionToSet) {
