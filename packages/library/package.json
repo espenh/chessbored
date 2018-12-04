@@ -41,8 +41,6 @@
     "watch": "tsc --watch",
     "lint": "tslint -p tsconfig.json",
     "prepublishOnly": "npm test && npm run build",
-    "preversion": "npm run lint",
-    "version": "git add -A src",
     "postversion": "git push && git push --tags"
   },
   "license": "MIT"
