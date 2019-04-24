@@ -9,6 +9,24 @@ The api is almost identical, but will change over time.
 npm install chessbored
 ```
 
+## Development
+This repository contains the main library and basic web project for testing the component.
+
+Install dependencies and link library and the web project.
+```
+<root>\npm run bootstrap
+```
+
+To build (and watch) the library:
+```
+packages\library\npm run watch
+```
+
+To launch the website with chessbored library linked:
+```
+packages\website\npm run start
+```
+
 ## Todo 
 - Add screenshots.
 - Link to website.
