@@ -29,8 +29,8 @@ export class ChessBoard {
   // use unique class names to prevent clashing with anything else on the page
   // and simplify selectors
   // NOTE: these should never change
-  throttledMousemoveWindow: ((evt: JQuery.Event<EventTarget, null>) => void) & _.Cancelable;
-  throttledTouchmoveWindow: ((evt: JQuery.Event<EventTarget, null>) => void) & _.Cancelable;
+  throttledMousemoveWindow: ((evt: JQuery.MouseMoveEvent) => void) & _.Cancelable;
+  throttledTouchmoveWindow: ((evt: JQuery.TouchMoveEvent) => void) & _.Cancelable;
 
 
 
@@ -1246,7 +1246,7 @@ export class ChessBoard {
     evt.preventDefault()
   }
 
-  private mousedownSquare = (evt: JQuery.Event) => {
+  private mousedownSquare = (evt: JQuery.MouseDownEvent) => {
     // do nothing if we're not draggable
     if (!this.config.draggable) return
 
@@ -1262,7 +1262,7 @@ export class ChessBoard {
     this.beginDraggingPiece(square, piece, evt.pageX, evt.pageY)
   }
 
-  private touchstartSquare = (evt: JQuery.Event) => {
+  private touchstartSquare = (evt: JQuery.TouchStartEvent) => {
     // do nothing if we're not draggable
     if (!this.config.draggable) return
 
@@ -1288,7 +1288,7 @@ export class ChessBoard {
     }
   }
 
-  private mousedownSparePiece = (evt: JQuery.Event) => {
+  private mousedownSparePiece = (evt: JQuery.MouseDownEvent) => {
     // do nothing if sparePieces is not enabled
     if (!this.config.sparePieces) return
 
@@ -1301,7 +1301,7 @@ export class ChessBoard {
     this.beginDraggingPiece('spare', piece, evt.pageX, evt.pageY)
   }
 
-  private touchstartSparePiece = (evt: JQuery.Event) => {
+  private touchstartSparePiece = (evt: JQuery.TouchStartEvent) => {
     // do nothing if sparePieces is not enabled
     if (!this.config.sparePieces) return
 
@@ -1324,7 +1324,7 @@ export class ChessBoard {
     }
   }
 
-  private mousemoveWindow = (evt: JQuery.Event) => {
+  private mousemoveWindow = (evt: JQuery.MouseMoveEvent) => {
     if (this.isDragging) {
       this.updateDraggedPiece(evt.pageX, evt.pageY)
     }
@@ -1332,7 +1332,7 @@ export class ChessBoard {
 
 
 
-  private touchmoveWindow = (evt: JQuery.Event) => {
+  private touchmoveWindow = (evt: JQuery.TouchMoveEvent) => {
     // do nothing if we are not dragging a piece
     if (!this.isDragging) return
 
@@ -1347,7 +1347,7 @@ export class ChessBoard {
 
 
 
-  private mouseupWindow = (evt: JQuery.Event) => {
+  private mouseupWindow = (evt: JQuery.MouseUpEvent) => {
     // do nothing if we are not dragging a piece
     if (!this.isDragging || !this.draggedPiece || !this.draggedPieceSource) return
 
@@ -1357,7 +1357,7 @@ export class ChessBoard {
     this.stopDraggedPiece(location, this.draggedPieceSource, this.draggedPiece)
   }
 
-  private touchendWindow = (evt: JQuery.Event) => {
+  private touchendWindow = (evt: JQuery.TouchEndEvent) => {
     // do nothing if we are not dragging a piece
     if (!this.isDragging || !this.draggedPiece || !this.draggedPieceSource) return
 
@@ -1372,7 +1372,7 @@ export class ChessBoard {
     this.stopDraggedPiece(location, this.draggedPieceSource, this.draggedPiece)
   }
 
-  private mouseenterSquare = (evt: JQuery.Event) => {
+  private mouseenterSquare = (evt: JQuery.MouseEnterEvent) => {
     // do not fire this event if we are dragging a piece
     // NOTE: this should never happen, but it's a safeguard
     if (this.isDragging) return
@@ -1400,7 +1400,7 @@ export class ChessBoard {
     this.config.onMouseoverSquare(square, !!piece, this.deepCopy(this.currentPosition), this.currentOrientation)
   }
 
-  private mouseleaveSquare = (evt: JQuery.Event) => {
+  private mouseleaveSquare = (evt: JQuery.MouseLeaveEvent) => {
     // do not fire this event if we are dragging a piece
     // NOTE: this should never happen, but it's a safeguard
     if (this.isDragging) return

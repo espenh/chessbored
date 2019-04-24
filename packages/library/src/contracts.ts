@@ -14,7 +14,7 @@ export interface IChessBoardConfig {
 
     orientation: BoardOrientation;
 
-    showErrors: boolean | "console" | "alert" | ((err: string) => void);
+    showErrors: boolean | "console" | "alert" | ((err: string, msg: string, obj: object) => void);
 
     showNotation: boolean;
 

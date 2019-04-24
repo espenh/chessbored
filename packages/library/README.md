@@ -8,3 +8,10 @@ The api is almost identical, but will change over time.
 ```
 npm install chessbored
 ```
+
+## Development
+To build and watch:
+```
+npm install
+npm run watch
+```
